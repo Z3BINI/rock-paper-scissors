@@ -12,25 +12,25 @@ function playRound(cpuChoice, playerChoice) { //Takes computer and player input
 
         case ('Rock'):
             if (playerChoice == 'Paper') {
-                return 'Player wins!';
+                return 'Player wins! Paper beats Rock!';
             } else {
-                return 'Computer wins!';
+                return 'Computer wins! Rock beats Scissors!';
             }
             break;
 
         case ('Paper'):
             if (playerChoice == 'Scissors') {
-                return 'Player wins!';
+                return 'Player wins! Scissors beats Paper!';
             } else {
-                return 'Computer wins!';
+                return 'Computer wins! Paper beats Rock!';
             }
             break;
 
         case ('Scissors'):
             if (playerChoice == 'Rock') {
-                return 'Player wins!';
+                return 'Player wins! Rock beats Scissors!';
             } else {
-                return 'Computer wins!';
+                return 'Computer wins! Scissors beats Paper!';
             }
             break;
 
@@ -43,4 +43,4 @@ function playRound(cpuChoice, playerChoice) { //Takes computer and player input
 }
 
 
-console.error(playRound(getComputerChoice(), 'Paper')); 
+console.warn(playRound(getComputerChoice(), 'Paper')); 
