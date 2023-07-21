@@ -1,6 +1,14 @@
 const possibleChoices = ['Rock', 'Paper', 'Scissors']; //Both the player's and computer's only possible options.
 
-let getComputerChoice = () => possibleChoices[Math.floor(Math.random() * 3)]; //Returns a random int from 0-2 as an index for the options.
+let getComputerChoice = () => possibleChoices[Math.floor(Math.random() * 3)]; //Returns a random int from 0-2 as an index for the possibleChoices array.
+
+let getPlayerChoice = () => {
+    let playerChoice = prompt('Rock, paper or Scissors?');
+
+    playerChoice = playerChoice.at(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+
+    return playerChoice;
+}
 
 function playRound(cpuChoice, playerChoice) { //Takes computer and player input 
 
@@ -42,5 +50,4 @@ function playRound(cpuChoice, playerChoice) { //Takes computer and player input
 
 }
 
-
-console.warn(playRound(getComputerChoice(), 'Paper')); 
+console.warn(playRound(getComputerChoice(), getPlayerChoice())); 
