@@ -1,12 +1,20 @@
 const possibleChoices = ['Rock', 'Paper', 'Scissors']; 
 
-const btns = document.querySelectorAll('button');
+const btns = document.querySelectorAll('button.game');
 
-const playerChoiceHTML = document.querySelector('p.pChoice');
-const computerChoiceHTML = document.querySelector('p.cChoice');
+const rr = document.querySelector('button.rr');
 
-const playerPointsHTML = document.querySelector('p.pPoints');
-const computerPointsHTML = document.querySelector('p.cPoints');
+const paper = document.querySelector('audio.paperSound');
+const rock = document.querySelector('audio.rockSound');
+const scissors = document.querySelector('audio.scissorsSound');
+
+const playerChoiceHTML = document.querySelector('img.pChoice');
+const computerChoiceHTML = document.querySelector('img.cChoice');
+
+const playerPointsHTML = document.querySelector('span.pPoints');
+const computerPointsHTML = document.querySelector('span.cPoints');
+
+const gameResultHTML = document.querySelector('p.winner');
 const roundResultHTML = document.querySelector('p.result');
 
 let playerScore = 0;
@@ -15,17 +23,23 @@ let computerScore = 0;
 let getComputerChoice = () => possibleChoices[Math.floor(Math.random() * 3)]; 
 
 function resetGame() {
-    playerChoiceHTML.textContent = '';
-    computerChoiceHTML.textContent = '';
-    playerPointsHTML.textContent = '';
-    computerPointsHTML.textContent = '';
-    roundResultHTML.textContent = '';
+    playerChoiceHTML.src = './img/placeHolder.jpg';
+    computerChoiceHTML.src = './img/placeHolder.jpg';
+
+    playerPointsHTML.textContent = '0';
+    computerPointsHTML.textContent = '0';
+    roundResultHTML.textContent = '-';
+
+    btns.forEach(btn => btn.disabled = false );
 }
 
-function gameOver (winner) {
-    window.alert(`Game Over! ${winner} wins!`);
+function gameOver (winner, winnerScore, loserScore) {
+    gameResultHTML.textContent = `${winner} won! ${winnerScore} to ${loserScore}`;
+    window.alert('Game Over! Check the score at the bottom of the page. Press restart to try again!');
+    btns.forEach(btn => btn.disabled = true );
 }
 
+rr.addEventListener('click', e => resetGame() );
 function game() { 
     
     btns.forEach( btn => btn.addEventListener('click', e => {
@@ -34,9 +48,13 @@ function game() {
   
 
     function playRound(computerChoice, playerChoice) { 
+        
+        computerChoiceHTML.src = `./img/${computerChoice}.jpg`;
+        playerChoiceHTML.src = `./img/${playerChoice}.jpg`;
 
-        computerChoiceHTML.textContent = computerChoice;
-        playerChoiceHTML.textContent = playerChoice;
+        if (playerChoice === 'Paper') paper.play()
+        if (playerChoice === 'Rock') rock.play()
+        if (playerChoice === 'Scissors') scissors.play()
     
         switch (computerChoice) { 
     
@@ -48,11 +66,11 @@ function game() {
                 if (playerChoice == 'Paper') {
                     playerScore++;
                     roundResultHTML.textContent = 'Player wins! Paper beats Rock!';
-                    playerPointsHTML.textContent = 'The player score is: ' + playerScore;
+                    playerPointsHTML.textContent = playerScore;
                 } else {
                     computerScore++;
                     roundResultHTML.textContent = 'Computer wins! Rock beats Scissors!';
-                    computerPointsHTML.textContent = 'The computer score is: ' + computerScore;
+                    computerPointsHTML.textContent = computerScore;
                 }
                 break;
     
@@ -60,11 +78,11 @@ function game() {
                 if (playerChoice == 'Scissors') {
                     playerScore++;
                     roundResultHTML.textContent = 'Player wins! Scissors beats Paper!';
-                    playerPointsHTML.textContent = 'The player score is: ' + playerScore;
+                    playerPointsHTML.textContent = playerScore;
                 } else {
                     computerScore++;
                     roundResultHTML.textContent = 'Computer wins! Paper beats Rock!';
-                    computerPointsHTML.textContent = 'The computer score is: ' + computerScore;
+                    computerPointsHTML.textContent = computerScore;
                 }
                 break;
     
@@ -72,11 +90,11 @@ function game() {
                 if (playerChoice == 'Rock') {
                     playerScore++;
                     roundResultHTML.textContent = 'Player wins! Rock beats Scissors!';
-                    playerPointsHTML.textContent = 'The player score is: ' + playerScore;
+                    playerPointsHTML.textContent = playerScore;
                 } else {
                     computerScore++;
                     roundResultHTML.textContent = 'Computer wins! Scissors beats Paper!';
-                    computerPointsHTML.textContent = 'The computer score is: ' + computerScore;
+                    computerPointsHTML.textContent = computerScore;
                 }
                 break;
     
@@ -87,17 +105,17 @@ function game() {
         }
 
         if (playerScore === 5) {
+            gameOver('Player', 5, computerScore);
             playerScore = 0;
             computerScore = 0;
-            resetGame();
-            return gameOver('Player');
+            //return resetGame();
         } 
 
         if (computerScore === 5) {
+            gameOver('Computer', 5, playerScore);
             playerScore = 0;
             computerScore = 0;
-            resetGame();
-            return gameOver('Computer');
+            //return resetGame();
         }
     
     }
