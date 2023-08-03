@@ -3,39 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <script src="./js/script.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h3>Player Choice:</h3>
-        <p class="pChoice"></p>
+    <div class="header">
+        <h1>ROCK, PAPER OR SCISSORS</h1>
     </div>
 
-    <div>
-        <h3>CPU Choice:</h3>
-        <p class="cChoice"></p>
-    </div>
-
-    <div>
+    <div class="roundStatus">
         <h3>Round result:</h3>
-        <p class="result"></p>
+        <p class="result">-</p>
+    </div>
+    
+    <div class="sectionOne">
+        <div class="vertical">
+            <h2>Player's Choice</h2>
+            <img src="./img/placeHolder.jpg" class="pChoice square" />
+            <p class="destacar">Player's points: <span class="pPoints">0</span></p>
+        </div>
+
+        <h1>VS.</h1>
+
+        <div class="vertical">
+            <h2>CPU's Choice</h2>
+            <img src="./img/placeHolder.jpg" class="cChoice square">
+            <p class="destacar">Computer's points: <span class="cPoints">0</span></p>
+        </div>
     </div>
 
-    <div>
-        <h4>Game results:</h4>
-        <p>First one to hit 5 wins! ;)</p>
-
-        <h5>Player points:</h5>
-        <p class="pPoints"></p>
-        <h5>Computer points:</h5>
-        <p class="cPoints"></p>
+    <div class="sectionTwo">
+        <button class="game">Rock</button>
+        <button class="game">Paper</button>
+        <button class="game">Scissors</button>
     </div>
 
-    <div>
-        <button>Rock</button>
-        <button>Paper</button>
-        <button>Scissors</button>
+    <div class="lastGame">
+        <h4>Last Game result:</h4>
+        <p class="winner">No games played yet!</p>        
     </div>
+
+    <audio class ="paperSound" src="./audio/fart.mp3"></audio>
+    <audio class ="rockSound" src="./audio/theRock.mp3"></audio>
+    <audio class ="scissorsSound" src="./audio/scissors.mp3"></audio>
+
+    <button class="rr">Restart Game!</button>
+
+    <div class="footer">
+        <p>Made by Eusébio! :)</p>
+    </div>
+
 </body>
 </html>
