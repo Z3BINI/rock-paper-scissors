@@ -1,74 +1,107 @@
-const possibleChoices = ['Rock', 'Paper', 'Scissors']; //Both the player's and computer's only possible options.
+const possibleChoices = ['Rock', 'Paper', 'Scissors']; 
 
-let getComputerChoice = () => possibleChoices[Math.floor(Math.random() * 3)]; //Returns a random int from 0-2 as an index for the possibleChoices array.
+const btns = document.querySelectorAll('button');
 
-let getPlayerChoice = () => {
-    let playerChoice = prompt('Rock, paper or Scissors?'); //Prompt player for choice
+const playerChoiceHTML = document.querySelector('p.pChoice');
+const computerChoiceHTML = document.querySelector('p.cChoice');
 
-    playerChoice = playerChoice.at(0).toUpperCase() + playerChoice.slice(1).toLowerCase(); //Format players choice to be useful
+const playerPointsHTML = document.querySelector('p.pPoints');
+const computerPointsHTML = document.querySelector('p.cPoints');
+const roundResultHTML = document.querySelector('p.result');
 
-    return playerChoice;
+let playerScore = 0;
+let computerScore = 0;
+
+let getComputerChoice = () => possibleChoices[Math.floor(Math.random() * 3)]; 
+
+function resetGame() {
+    playerChoiceHTML.textContent = '';
+    computerChoiceHTML.textContent = '';
+    playerPointsHTML.textContent = '';
+    computerPointsHTML.textContent = '';
+    roundResultHTML.textContent = '';
 }
 
-function game() { //Game function to allow rounds to first 5 points
+function gameOver (winner) {
+    window.alert(`Game Over! ${winner} wins!`);
+}
 
-    let playerScore = 0;
-    let cpuScore = 0;
+function game() { 
+    
+    btns.forEach( btn => btn.addEventListener('click', e => {
+        playRound(getComputerChoice(), e.target.innerText);
+    }));
+  
 
-    function playRound(cpuChoice, playerChoice) { //Takes computer and player input 
+    function playRound(computerChoice, playerChoice) { 
 
-        switch (cpuChoice) { //Computer choice is put at test with player's
-
+        computerChoiceHTML.textContent = computerChoice;
+        playerChoiceHTML.textContent = playerChoice;
+    
+        switch (computerChoice) { 
+    
             case (playerChoice):
-                return 'Tie!';
+                roundResultHTML.textContent = 'Tie!';
                 break;
-
+    
             case ('Rock'):
                 if (playerChoice == 'Paper') {
                     playerScore++;
-                    return 'Player wins! Paper beats Rock!';
+                    roundResultHTML.textContent = 'Player wins! Paper beats Rock!';
+                    playerPointsHTML.textContent = 'The player score is: ' + playerScore;
                 } else {
-                    cpuScore++;
-                    return 'Computer wins! Rock beats Scissors!';
+                    computerScore++;
+                    roundResultHTML.textContent = 'Computer wins! Rock beats Scissors!';
+                    computerPointsHTML.textContent = 'The computer score is: ' + computerScore;
                 }
                 break;
-
+    
             case ('Paper'):
                 if (playerChoice == 'Scissors') {
                     playerScore++;
-                    return 'Player wins! Scissors beats Paper!';
+                    roundResultHTML.textContent = 'Player wins! Scissors beats Paper!';
+                    playerPointsHTML.textContent = 'The player score is: ' + playerScore;
                 } else {
-                    cpuScore++;
-                    return 'Computer wins! Paper beats Rock!';
+                    computerScore++;
+                    roundResultHTML.textContent = 'Computer wins! Paper beats Rock!';
+                    computerPointsHTML.textContent = 'The computer score is: ' + computerScore;
                 }
                 break;
-
+    
             case ('Scissors'):
                 if (playerChoice == 'Rock') {
                     playerScore++;
-                    return 'Player wins! Rock beats Scissors!';
+                    roundResultHTML.textContent = 'Player wins! Rock beats Scissors!';
+                    playerPointsHTML.textContent = 'The player score is: ' + playerScore;
                 } else {
-                    cpuScore++;
-                    return 'Computer wins! Scissors beats Paper!';
+                    computerScore++;
+                    roundResultHTML.textContent = 'Computer wins! Scissors beats Paper!';
+                    computerPointsHTML.textContent = 'The computer score is: ' + computerScore;
                 }
                 break;
-
+    
             default:
-                return 'Something went wrong!';
+                roundResultHTML.textContent = 'Something went wrong!';
                 break;
-
+    
         }
 
+        if (playerScore === 5) {
+            playerScore = 0;
+            computerScore = 0;
+            resetGame();
+            return gameOver('Player');
+        } 
+
+        if (computerScore === 5) {
+            playerScore = 0;
+            computerScore = 0;
+            resetGame();
+            return gameOver('Computer');
+        }
+    
     }
 
-    while (playerScore < 5 && cpuScore < 5) { //The logic that allows a 5 point game to be played
-        console.log('The player score is: ' + playerScore);
-        console.log('The computer score is: ' + cpuScore);
-        console.warn(playRound(getComputerChoice(), getPlayerChoice()));
-    }
-
-    console.log('Final Score: Player-> ' + playerScore + ' | Computer-> ' + cpuScore); //Shows final score since while exits as soon as someone hits 5 points
 }
 
 game();
-
