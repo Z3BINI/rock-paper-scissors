@@ -1,0 +1,101 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FAFAFA;
+    margin: 0;
+}
+
+body {
+    background-color: #8AA29E;
+    min-height: 100vh;
+}
+
+body, .vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.roundStatus {
+    margin-bottom: 40px;
+    text-align: center;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #0C090D;
+    padding: 25px 0;
+    margin-bottom: 50px;
+}
+
+.lastGame {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.rr {
+    margin-bottom: 25px;
+    width: 100px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #0C090D;
+    padding: 25px 0;
+    margin-top: auto;
+}
+
+.header h1 {
+    color: #FFD400
+}
+.result{
+    font-weight: bold;
+    color:#FFD400;
+    font-size: 32px;
+    text-decoration: underline;
+}
+h3 {
+    text-align: center;
+    font-size: 32px;
+}
+button{
+    background-color: #0C090D;
+    color:#FFD400;
+    border: 2px solid #DB5461;
+    font-weight: bold;
+    width: 75px;
+    height: 50px;
+}
+.sectionOne{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sectionTwo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 30px 0;
+}
+.square {
+    width: 250px;
+    height: 250px;
+    border: 5px solid #DB5461;
+    margin: 25px 50px;
+}
+
+.destacar {
+    font-weight: bold;
+    font-size: 32px;
+    color:#FAFAFA;
+}
+
+span {
+    color: #DB5461;
+    font-size: 30px;
+}
