@@ -39,7 +39,6 @@ function gameOver (winner, winnerScore, loserScore) {
     btns.forEach(btn => btn.disabled = true );
 }
 
-rr.addEventListener('click', e => resetGame() );
 function game() { 
     
     btns.forEach( btn => btn.addEventListener('click', e => {
@@ -49,6 +48,12 @@ function game() {
 
     function playRound(computerChoice, playerChoice) { 
         
+        rr.addEventListener('click', e => {
+            playerScore = 0;
+            computerScore = 0;
+            return resetGame();
+        });
+
         computerChoiceHTML.src = `./img/${computerChoice}.jpg`;
         playerChoiceHTML.src = `./img/${playerChoice}.jpg`;
 
@@ -108,14 +113,12 @@ function game() {
             gameOver('Player', 5, computerScore);
             playerScore = 0;
             computerScore = 0;
-            //return resetGame();
         } 
 
         if (computerScore === 5) {
             gameOver('Computer', 5, playerScore);
             playerScore = 0;
             computerScore = 0;
-            //return resetGame();
         }
     
     }
