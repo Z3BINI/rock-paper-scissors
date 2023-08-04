@@ -16,6 +16,7 @@ const computerPointsHTML = document.querySelector('span.cPoints');
 
 const gameResultHTML = document.querySelector('p.winner');
 const roundResultHTML = document.querySelector('p.result');
+const gameOverHTML = document.querySelector('.roundStatus h3');
 
 let playerScore = 0;
 let computerScore = 0;
@@ -29,12 +30,14 @@ function resetGame() {
     playerPointsHTML.textContent = '0';
     computerPointsHTML.textContent = '0';
     roundResultHTML.textContent = '-';
+    gameOverHTML.textContent = 'Round result:';
 
     btns.forEach(btn => btn.disabled = false );
 }
 
 function gameOver (winner, winnerScore, loserScore) {
     gameResultHTML.textContent = `${winner} won! ${winnerScore} to ${loserScore}`;
+    gameOverHTML.textContent ='Game Over! Last Round Result:'
     btns.forEach(btn => btn.disabled = true );
 }
 
