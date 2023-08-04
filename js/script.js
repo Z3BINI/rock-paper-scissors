@@ -35,7 +35,6 @@ function resetGame() {
 
 function gameOver (winner, winnerScore, loserScore) {
     gameResultHTML.textContent = `${winner} won! ${winnerScore} to ${loserScore}`;
-    window.alert('Game Over! Check the score at the bottom of the page. Press restart to try again!');
     btns.forEach(btn => btn.disabled = true );
 }
 
@@ -45,7 +44,6 @@ function game() {
         playRound(getComputerChoice(), e.target.innerText);
     }));
   
-
     function playRound(computerChoice, playerChoice) { 
         
         rr.addEventListener('click', e => {
@@ -57,9 +55,18 @@ function game() {
         computerChoiceHTML.src = `./img/${computerChoice}.jpg`;
         playerChoiceHTML.src = `./img/${playerChoice}.jpg`;
 
-        if (playerChoice === 'Paper') paper.play()
-        if (playerChoice === 'Rock') rock.play()
-        if (playerChoice === 'Scissors') scissors.play()
+        if (playerChoice === 'Paper'){
+            paper.currentTime = 0;
+            paper.play()
+        } 
+        if (playerChoice === 'Rock') {
+            rock.currentTime = 0;
+            rock.play()
+        }
+        if (playerChoice === 'Scissors'){
+            scissors.currentTime = 0;
+            scissors.play()
+        } 
     
         switch (computerChoice) { 
     
@@ -124,5 +131,6 @@ function game() {
     }
 
 }
-
+window.alert('Welcome!\nTo play keep selecting an option below\n(Rock, Paper or Scissors).');
+window.alert('First one to 5 points wins!\nGood luck!');
 game();
