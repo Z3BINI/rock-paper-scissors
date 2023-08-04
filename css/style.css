@@ -17,8 +17,15 @@ body, .vertical {
 }
 
 .roundStatus {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-align: center;
+    padding: 20px 50px;
+    border: 5px solid #FFD400;
+    background-color: #e5f4e3;
+}
+
+.blackColor {
+    color: black;
 }
 .header {
     display: flex;

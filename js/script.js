@@ -37,7 +37,7 @@ function resetGame() {
 
 function gameOver (winner, winnerScore, loserScore) {
     gameResultHTML.textContent = `${winner} won! ${winnerScore} to ${loserScore}`;
-    gameOverHTML.textContent ='Game Over! Last Round Result:'
+    gameOverHTML.textContent ='Game Over! Press Restart Game to play again! Last Round Result:'
     btns.forEach(btn => btn.disabled = true );
 }
 
